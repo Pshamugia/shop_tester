@@ -1,87 +1,40 @@
 @extends('layout')
 
 @section('content')
+<form method="post" action="{{ route('products.delete')}}">
+    @csrf
+<div class="row">
+    <div class="col-md-4"> 
+Product Add 
+</div>
+<div class="col-md-8" style="text-align: right;"> 
+<input type="button" value="ADD" onclick="document.location.href='{{ route('products.add') }}'">
+ 
+<input type="submit" value="MASS DELETE">
+ 
+</div>
+</div>
+<hr>
+ 
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-            </div>
-        </div>
-        </div>
-    </div>
 
+    @foreach ($products as $product)
     <div class="col-md-4">
+        
         <div class="card mb-4 box-shadow">
-        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-            </div>
+                <div class="card-body">
+                    <div> <input type="checkbox" name="ids[]" value="{{ $product->id }}"> </div>
+            <div class="card-text"> {{$product->name}} </div>
+            <div class="card-text"> {{$product->sku}} </div>
+            <div class="card-text"> {{$product->price}} </div>
+            @foreach ($product->options as $option)
+                {{ $option->name }}: {{ $option->value }}<br>
+            @endforeach
         </div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-            </div>
-        </div>
-        </div>
-    </div>
+@endforeach
 </div>
-
+</form>
 @endsection

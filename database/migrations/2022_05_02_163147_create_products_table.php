@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->index();
             $table->string('sku')->unique()->index();
-            $table->integer('price');
+            $table->double('price');
             $table->integer('type');
             $table->timestamps();
         });
