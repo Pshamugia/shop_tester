@@ -31,5 +31,5 @@
         </div>
     </div>
 
-    Please, provide dimensions
+    Please, provide dimensions in HxWxL format
 </div><?php /**PATH C:\xampp\htdocs\onlineshop\resources\views/products/inc/furniture.blade.php ENDPATH**/ ?>

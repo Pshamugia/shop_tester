@@ -69,10 +69,12 @@ class ProductsController extends Controller
     public function delete()
     {
         $ids = request()->ids;
-        foreach($ids as $id) 
-        {
-            ProductOption::where('product_id', $id)->delete();
-            Product::where('id', $id)->delete();
+        if($ids !== null && is_array($ids)) {
+            foreach($ids as $id) 
+            {
+                ProductOption::where('product_id', $id)->delete();
+                Product::where('id', $id)->delete();
+            }     
         }
         return redirect()->route('products.index');
     } 
